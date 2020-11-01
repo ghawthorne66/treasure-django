@@ -1,2 +1,2 @@
-python-<version>
-eg. python-3.9
+
+python3-3.7.3
