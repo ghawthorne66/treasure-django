@@ -28,7 +28,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'c6^!fo1zg4r!r*f-+cfr&==nwu0_^+jzj=htu(-mpn_hk+(pc_'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 #remove https://from the url
 #use * if you want to allow all hosts.
