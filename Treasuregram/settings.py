@@ -1,3 +1,8 @@
+import dj_database_url
+import django_heroku
+import os
+
+
 """
 Django settings for Treasuregram project.
 
@@ -25,14 +30,18 @@ SECRET_KEY = 'c6^!fo1zg4r!r*f-+cfr&==nwu0_^+jzj=htu(-mpn_hk+(pc_'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+#remove https://from the url
+#use * if you want to allow all hosts.
+ALLOWED_HOSTS = ['<url>']
+# ALLOWED_HOSTS = []
+
+
 
 
 # Application definition
 
 INSTALLED_APPS = [
   'main_app',
-  
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -49,6 +58,8 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
 ]
 
 ROOT_URLCONF = 'Treasuregram.urls'
@@ -81,6 +92,13 @@ DATABASES = {
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
+
+# DATABASES = {
+#         'default': {
+#             'ENGINE': 'django.db.backends.postgresql_psycopg2',
+#             'NAME': 'ciba',
+#         }
+#     }
 
 
 # Password validation
@@ -119,4 +137,8 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATIC_URL = '/static/'
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
+django_heroku.settings(locals())
